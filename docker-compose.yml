@@ -7,3 +7,14 @@ services:
     volumes:
       - ./htdocs:/usr/local/apache2/htdocs/
       - ./conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./gadgets:/usr/share/
+    depends_on:
+      - php
+    restart: always
+
+  php:
+    image: php:8.2-fpm
+    container_name: my-php-fpm
+    volumes:
+      - ./htdocs:/usr/local/apache2/htdocs/
+      - ./gadgets:/usr/share/
